@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  overflow-y: hidden;
+}
+
+.containerList {
+  overflow: scroll;
+  max-height: 200px !important;
+  width: 100%;
+}
+.infoRectangle {
+  margin: 40px;
+  width: 100vw;
+  overflow: auto;
+  scrollbar-width: none;
+  background-color: #ffffff99;
+  border-radius: 3px;
+  scrollbar-width: thin;
+}
+
+.infoRectangle::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.infoRectangle::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.infoRectangle::-moz-scrollbar {
+  display: none;
+}
+
+.userInfo {
+  font-weight: 600;
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size: 15px;
+  border-spacing: 15px;
+  text-align: left;
+  color: #707070;
+}
+
+@media only screen and (max-width: 768px) {
+  .infoRectangle {
+    margin: 20px;
+  }
+
+  .userInfo {
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .noShow {
+    display: none;
+  }
+}
+
+/* Responsive styles for 480px and below */
+@media only screen and (max-width: 480px) {
+  .container {
+    display: inline;
+  }
+  .infoRectangle {
+    margin: 0px;
+    height: 100vh;
+  }
+
+  .userInfo {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .noShow {
+    display: none;
+  }
+}

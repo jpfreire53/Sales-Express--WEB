@@ -1,0 +1,291 @@
+.container {
+  display: flex;
+}
+
+.infoRectangle {
+  margin: 40px;
+  width: 100vw;
+  background-color: #ffffff99;
+  border-radius: 3px;
+}
+.titleAdd {
+  margin-top: 45px;
+  margin-left: 45px;
+  display: flex;
+  color: #415A77;
+  font-size: 20px;
+  align-items: center;
+}
+
+.containerInput {
+  color: #707070;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 45px;
+  margin-top: 50px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inputStyles {
+  width: 100%;
+  max-width: 270px;
+  height: 41px;
+  outline: none;
+  padding: 15px;
+  color: #778DA9;
+  margin-top: 11px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 6px #0000000d;
+  border-radius: 5px;
+  font-size: 15px;
+  opacity: 1;
+  border: none;
+  margin-right: 55%;
+}
+
+.containerInput div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.containerAdd {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 10px;
+  justify-content: space-around;
+}
+
+.linkRetangular {
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #415A77;
+  background-color: white;
+  border: 2px solid #074a82;
+  border-radius: 3px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.linkRetangular:hover {
+  background-color: #415A77;
+  color: #ffffff;
+}
+
+.quadradoAzul {
+  margin-right: 6px;
+  width: 50px;
+  height: 50px;
+  background-color: #415A77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.logoCad {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.containerRemove {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 360px;
+  justify-content: space-around;
+}
+
+.linkRetangularCinza {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #707070;
+  background-color: #b7b7b7;
+  border: 2px solid #b7b7b7;
+  border-radius: 3px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.linkRetangularCinza:hover {
+  background-color: #707070;
+  color: #b7b7b7;
+}
+
+.quadradoCinza {
+  margin-right: 6px;
+  width: 50px;
+  height: 50px;
+  background-color: #707070;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.logoRemove {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.logoAdd {
+  margin-right: 15px;
+}
+
+.containerBtn {
+  display: flex;
+  position: fixed;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 1px;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 768px) {
+  .infoRectangle {
+    margin: 20px;
+  }
+
+  .inputStyles {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    font-size: 10px;
+  }
+
+  label {
+    font-size: 10px;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    right: 10px;
+    font-size: 14px;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    right: 10px;
+    font-size: 14px;
+  }
+
+  .titleAdd {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .containerInput {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .inputStyles {
+    margin-right: 0;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    right: 10px;
+  }
+
+  .containerRemove {
+    right: 200px;
+  }
+  .containerBtn {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Responsive styles for 480px and below */
+@media only screen and (max-width: 480px) {
+  .container {
+    display: inline;
+  }
+
+  .infoRectangle {
+    margin: 0px;
+    height: 100vh;
+  }
+
+  .containerAdd {
+    margin-top: 10px;
+  }
+
+  .inputStyles {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    font-size: 12px;
+  }
+
+  label {
+    margin-left: 15px;
+    font-size: 15px;
+  }
+
+  .titleAdd,
+  .containerInput {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .titleAdd {
+    margin-left: 15px;
+    font-size: 15px;
+  }
+
+  .logoAdd {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    right: 5px;
+    font-size: 12px;
+  }
+
+  .containerRemove {
+    right: 90px;
+  }
+
+  .inputStyles {
+    width: 60%;
+    max-width: none;
+    margin-right: 30px;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    right: 5px;
+  }
+
+  .containerBtn {
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    bottom: 30px;
+    align-items: flex-end;
+  }
+}

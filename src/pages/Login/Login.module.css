@@ -1,0 +1,86 @@
+body {
+  width: 100%;
+  height: 100vh;
+  opacity: 1;
+  background-color: #E0E1DD;
+}
+
+.containerData {
+  top: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.btnLogin {
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 19px;
+  width: 211px;
+  height: 53px;
+  background-color: #778DA9;
+  border-radius: 5px;
+  opacity: 1;
+  color: #ffffff;
+  border: none;
+  font-weight: 15px;
+  font-weight: bold;
+}
+
+.btnLogin:hover {
+  opacity: 0.8;
+}
+
+.inputStyle {
+  top: 369px;
+  left: 816px;
+  width: 100%;
+  max-width: 270px;
+  height: 41px;
+  outline: none;
+  padding: 15px;
+  color: #074a82;
+  margin-top: 11px;
+  background: var(#ffffff);
+  box-shadow: 0px 3px 6px #0000000d;
+  border-radius: 5px;
+  font-size: 15px;
+  opacity: 1;
+  border: none;
+}
+.imgLogo {
+  margin-top: 108px;
+  height: 250px;
+}
+.inputStyle::placeholder {
+  color: #074a82;
+}
+
+.forget {
+  font-weight: 600;
+  top: 578px;
+  left: 909px;
+  width: 102px;
+  height: 15px;
+  text-decoration: none;
+  text-transform: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #074a82;
+  opacity: 1;
+}
+
+.forget:hover {
+  color: #778DA9;
+}
+
+@media only screen and (max-width: 480px) {
+  .containerData {
+    margin-top: 39%;
+  }
+}
