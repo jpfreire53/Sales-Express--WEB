@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthentication from "../../hooks/useAuthentication";
+import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { useState } from "react";
+import Loading from "../../components/Loading/Loading";
 
 const Login = () => {
   const { user, password, setUser, setPassword, handleSubmit, loading } = useAuthentication();
-
+  const [showPassword, setShowPassword] = useState(false)
+ 
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (
@@ -22,17 +26,26 @@ const Login = () => {
           type="text"
           placeholder="Usuário"
           value={user}
+          required
           maxLength={30}
           onChange={(e) => setUser(e.target.value)}
         />
-        <input
-          className={styles.inputStyle}
-          type="password"
-          placeholder="Senha"
-          value={password}
-          maxLength={20}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className={styles.inputContainer}>
+          <input
+            className={styles.inputPassword}
+            type={showPassword ? "text" : "password"}
+            placeholder="Senha"
+            value={password}
+            required
+            maxLength={20}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {showPassword ?              
+            <EyeIcon onClick={() => setShowPassword(!showPassword)} style={{ cursor: "pointer" }} /> 
+                : 
+            <EyeOffIcon onClick={() => setShowPassword(!showPassword)} style={{ cursor: "pointer" }} />
+          }
+        </div>
         <button className={styles.btnLogin} onClick={handleSubmit}>
           LOGIN
         </button>

@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputMask from "react-input-mask";
 import useInsertUser from "../../hooks/useInsertUser";
+import Loading from "../../components/Loading/Loading";
 
 const Register = () => {
   const {
@@ -25,7 +26,7 @@ const Register = () => {
   } = useInsertUser();
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (

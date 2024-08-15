@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useListUser from "../../hooks/useListUser";
+import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
   const {
@@ -22,7 +23,7 @@ const Home = () => {
   } = useListUser();
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (

@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ResetPopUp from "../../components/ResetPopUp/ResetPopUp";
 import InputMask from "react-input-mask";
 import useEditUser from "../../hooks/useEditUser";
+import Loading from "../../components/Loading/Loading";
 
 const EditUser = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const EditUser = () => {
   } = useEditUser(id);
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (

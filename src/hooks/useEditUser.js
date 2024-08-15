@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const useEditUser = (id) => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,6 +14,7 @@ const useEditUser = (id) => {
     cnpj: "",
   });
   const [loading, setLoading] = useState(false);
+  const token = Cookies.get("token")
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,17 +31,12 @@ const useEditUser = (id) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/user/${id}`, {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+        const response = await axios.get(`http://localhost:3000/user/${id}`, {
+          withCredentials: true
         });
 
-        if (response.ok) {
-          const userFromApi = await response.json();
-          setUserData(userFromApi[0]);
+        if (response.status === 200) {
+          setUserData(response.data[0]);
         }
       } catch (error) {
         console.error(error);
@@ -51,13 +49,15 @@ const useEditUser = (id) => {
     try {
       setLoading(true);
 
-      const response = await fetch(`http://localhost:3000/edituser/${id}`, {
-        method: "PUT",
-        credentials: "include",
+      console.log(userData)
+
+      const response = await axios.put(`http://localhost:3000/edituser/${id}`, {
+        userData: userData
+      }, {
+        withCredentials: true,
         headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
+          Authorization: `Bearer ${token}`
+        }
       });
 
       if (
@@ -71,7 +71,7 @@ const useEditUser = (id) => {
         userData.cnpj === null
       ) {
         toast.error("Preencha os campos para realizar a alteração no usuário!");
-      } else if (response.ok) {
+      } else if (response.status === 200) {
         window.location.href = "/home/user";
         toast.success("Alterações salvas com sucesso!");
       } else {

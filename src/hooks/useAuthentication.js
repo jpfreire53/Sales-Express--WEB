@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const useAuthentication = () => {
   const [user, setUser] = useState("");
@@ -10,14 +12,18 @@ const useAuthentication = () => {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        credentials: "include",
+      const response = await axios.post("http://localhost:3000/login",
+       { 
+        user: user, 
+        password: password 
+      },
+       {
+        withCredentials: true,
         headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ user, password }),
-      });
+          "Content-Type": "application/json"
+        }
+       }
+      );
 
       if (
         user === "" ||
@@ -26,12 +32,14 @@ const useAuthentication = () => {
         password === null
       ) {
         toast.error("Preencha os campos para realizar o Login!");
-      } else if (response.ok) {
-        toast.success("Usuário Logado com sucesso!");
-        window.location.href = "/home/user";
       } else if (response.status === 401) {
         toast.error("Sessão expirada! Faça o Login novamente!");
         window.location.href = "/login";
+      } else if (response.status === 200) {
+        Cookies.set("token", response.data.token)
+        Cookies.set("idUser", response.data.user.id)
+        toast.success("Usuário Logado com sucesso!");
+        window.location.href = "/home/user";
       } else {
         toast.error("Erro ao fazer o login");
       }

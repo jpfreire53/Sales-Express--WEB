@@ -1,5 +1,7 @@
 // useHome.js
+import axios from "axios";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const useListUser = () => {
   const [selectUser, setSelectUser] = useState([]);
@@ -11,17 +13,14 @@ const useListUser = () => {
   useEffect(() => {
     const listarUsuarios = async () => {
       try {
-        const response = await fetch("http://localhost:3000/home/user", {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+        const id = Cookies.get("idUser")
+
+        const response = await axios.get(`http://localhost:3000/user/different/${id}`, {
+          withCredentials: true
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUsers(data);
+        if (response.status === 200) {
+          setUsers(response.data.users);
         }
       } catch (error) {
         console.error("Erro ao listar o usuário: " + error.message);

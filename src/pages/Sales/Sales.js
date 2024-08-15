@@ -4,6 +4,7 @@ import React from "react";
 import ListSales from "../../components/ListSales/ListSales.js";
 import PaymentReceipt from "../../components/PaymentReceipt/PaymentReceipt.js";
 import useListSales from "../../hooks/useListSales.js";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const Sales = () => {
   const {
@@ -19,7 +20,7 @@ const Sales = () => {
   console.log(sales);
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (
