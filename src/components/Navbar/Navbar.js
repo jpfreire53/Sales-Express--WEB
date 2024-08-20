@@ -8,6 +8,9 @@ import iconSalesBlue from "../../assets/icons/receipt_blue_24dp.svg";
 import iconLogout from "../../assets/icons/logout_black_24dp.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MenuIcon } from "lucide-react"
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,15 +21,16 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        credentials: "include",
+      const response = await axios.post("http://localhost:3000/logout", {} ,{
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
+        Cookies.remove("session")
+        Cookies.remove("idUser")
         toast.success("Logout bem sucedido");
         window.location.href = "/";
       } else {
@@ -40,7 +44,7 @@ const Navbar = () => {
   return (
     <header className={styles.containerNavP}>
       <ToastContainer />
-      <img className={styles.logoImg} src={logo} alt="logo" />
+      <MenuIcon width={40} height={40} className={styles.logoImg} />
       <nav className={styles.containerNav}>
         <Link
           to="/home/user"
@@ -53,7 +57,6 @@ const Navbar = () => {
             alt="iconUser"
             className={styles.Icon}
           />
-          USUÁRIOS
         </Link>
 
         <Link
@@ -67,12 +70,10 @@ const Navbar = () => {
             alt="iconSales"
             className={styles.Icon}
           />
-          VENDAS
         </Link>
 
         <button className={styles.btnLogout} onClick={handleLogout}>
           <img src={iconLogout} alt="iconLogout" className={styles.Icon} />
-          LOG OUT
         </button>
       </nav>
     </header>

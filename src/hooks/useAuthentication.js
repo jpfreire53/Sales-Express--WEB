@@ -8,46 +8,47 @@ const useAuthentication = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     try {
+      event.preventDefault();
       setLoading(true);
 
-      const response = await axios.post("http://localhost:3000/login",
-       { 
-        user: user, 
-        password: password 
-      },
-       {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json"
-        }
-       }
-      );
-
-      if (
-        user === "" ||
-        user === null ||
-        password === "" ||
-        password === null
-      ) {
+      if (user === "" || password === "") {
+        setLoading(false)
         toast.error("Preencha os campos para realizar o Login!");
-      } else if (response.status === 401) {
-        toast.error("Sessão expirada! Faça o Login novamente!");
-        window.location.href = "/login";
-      } else if (response.status === 200) {
-        Cookies.set("token", response.data.token)
-        Cookies.set("idUser", response.data.user.id)
-        toast.success("Usuário Logado com sucesso!");
-        window.location.href = "/home/user";
       } else {
-        toast.error("Erro ao fazer o login");
+        let response = await axios.post("http://localhost:3000/login", { 
+          user: user, 
+          password: password 
+        },{
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json"
+          }
+          }
+        );
+          
+        if (response.status === 401) {
+            toast.error("Sessão expirada! Faça o Login novamente!");
+            window.location.href = "/login";
+        } else if (response.status === 200) {
+          let session = Cookies.set("session", response.data.token)
+          Cookies.set("idUser", response.data.user.id)
+          if (session !== "" || session !== undefined) {
+            console.log(session)
+            setLoading(false)
+            toast.success("Usuário Logado com sucesso!");
+            window.location.href = "/home/user";
+          }
+        } else {
+          setLoading(false)
+          toast.error("Erro ao fazer o login");
+        }
       }
     } catch (error) {
+      setLoading(false)
       console.error("Error during login: ", error);
-    } finally {
-      setLoading(false); // Set loading to false after the request completes
-    }
+    } 
   };
 
   return { user, password, setUser, setPassword, handleSubmit, loading };

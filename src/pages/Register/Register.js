@@ -19,6 +19,10 @@ const Register = () => {
     setCompany,
     cnpj,
     setCnpj,
+    userType,
+    setUserType,
+    role,
+    setRole,
     loading,
     handleUserChange,
     handleNameChange,
@@ -73,10 +77,29 @@ const Register = () => {
             <label>CNPJ</label>
             <InputMask
               mask="99.999.999/9999-99"
+              maskChar=""
               type="text"
               className={styles.inputStyles}
               value={cnpj}
               onChange={(e) => setCnpj(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Função</label>
+            <InputMask
+              type="text"
+              className={styles.inputStyles}
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>CARGO</label>
+            <InputMask
+              type="text"
+              className={styles.inputStyles}
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
             />
           </div>
         </div>
