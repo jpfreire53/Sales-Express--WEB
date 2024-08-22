@@ -32,10 +32,10 @@ const useAuthentication = () => {
             toast.error("Sessão expirada! Faça o Login novamente!");
             window.location.href = "/login";
         } else if (response.status === 200) {
-          let session = Cookies.set("session", response.data.token)
+          let token = document.cookie
           Cookies.set("idUser", response.data.user.id)
-          if (session !== "" || session !== undefined) {
-            console.log(session)
+          if (token !== "" || token !== undefined) {
+            console.log(token)
             setLoading(false)
             toast.success("Usuário Logado com sucesso!");
             window.location.href = "/home/user";
