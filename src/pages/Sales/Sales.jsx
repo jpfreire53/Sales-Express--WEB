@@ -1,8 +1,8 @@
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Sales.module.css";
 import React from "react";
-import ListSales from "../../components/ListSales/ListSales.js";
-import PaymentReceipt from "../../components/PaymentReceipt/PaymentReceipt.js";
+import ListSales from "../../components/ListSales/ListSales.jsx";
+import PaymentReceipt from "../../components/PaymentReceipt/PaymentReceipt.jsx";
 import useListSales from "../../hooks/useListSales.js";
 import Loading from "../../components/Loading/Loading.jsx";
 

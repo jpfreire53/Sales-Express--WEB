@@ -1,16 +1,11 @@
-import styles from "./ResetPopUp.module.css";
+import axios from "axios";
+import styles from "./ForgotPassword.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
-const ResetPopUp = ({
-  open,
-  onClose,
-  newPassword,
-  setOpenModal,
-  setNewPassword,
-  userId,
-}) => {
-  if (!open) return null;
+const ForgotPassword = ({open, onClose, newPassword, setOpenModal, setNewPassword,}) => {
+  const [userName, setUserName] = useState("");
 
   const closePopUp = () => {
     setOpenModal(false);
@@ -18,26 +13,25 @@ const ResetPopUp = ({
 
   const handleResetPassword = async () => {
     try {
-      const encodedPassword = btoa(newPassword);
-
-      const response = await fetch(
-        `http://localhost:3000/resetpassword/${userId}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ newPassword: encodedPassword }),
-        }
-      );
-      if (newPassword == "" || newPassword == null) {
+      
+      if (newPassword === "" || userName === "") {
         toast.error("Para alterar a senha, você precisa digitar a nova senha!");
-      } else if (response.ok) {
-        toast.success("Senha resetada com sucesso!");
-        setOpenModal(false);
       } else {
-        toast.error("Erro ao resetar senha. Tente novamente mais tarde.");
+        const response = await axios.put(
+          `http://localhost:3000/resetpassword/${userName}`, {
+             newPassword: newPassword,
+          }, {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
+        );
+
+        if (response.status === 200) {
+          toast.success("Senha resetada com sucesso!");
+          setOpenModal(false);  
+        }
       }
     } catch (error) {
       console.error(error);
@@ -56,12 +50,19 @@ const ResetPopUp = ({
       >
         <div className={styles.allContainer}>
           <div className={styles.content}>
-            <p className={styles.delete}>Digite a sua nova senha: </p>
+            <input
+              type="text"
+              className={styles.inputStyles}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="Digite seu usuário"
+            />
             <input
               type="password"
               className={styles.inputStyles}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Digite a sua nova senha"
             />
             <p className={styles.quest}>Deseja alterar a sua senha atual?</p>
           </div>
@@ -79,4 +80,4 @@ const ResetPopUp = ({
   );
 };
 
-export default ResetPopUp;
+export default ForgotPassword;

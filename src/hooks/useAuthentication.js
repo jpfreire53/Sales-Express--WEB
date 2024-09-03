@@ -26,12 +26,11 @@ const useAuthentication = () => {
             "Content-Type": "application/json"
           }
           }
-        );
-          
-        if (response.status === 401) {
-            toast.error("Sessão expirada! Faça o Login novamente!");
-            window.location.href = "/login";
-        } else if (response.status === 200) {
+        ).catch((error) => {
+          if (error.response.status === 401) toast.error("Usuário e/ou senha inválidos")
+        });
+        
+        if (response.status === 200) {
           let token = document.cookie
           Cookies.set("idUser", response.data.user.id)
           if (token !== "" || token !== undefined) {

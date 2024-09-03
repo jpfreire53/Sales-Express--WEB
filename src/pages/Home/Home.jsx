@@ -69,7 +69,7 @@ const Home = () => {
         <div className={styles.containerRemove}>
           <div
             className={
-              selectUser == 0 ? styles.quadradoCinza : styles.quadradoAzul
+              selectUser.length === 0 ? styles.quadradoCinza : styles.quadradoAzul
             }
           >
             <img
@@ -80,18 +80,18 @@ const Home = () => {
           </div>
           <button
             onClick={() => {
-              if (selectUser !== 0) {
+              if (selectUser.length > 0) {
                 setOpenModal(true);
               } else {
                 setOpenModal(false);
               }
             }}
             className={
-              selectUser == 0
+              selectUser.length === 0
                 ? styles.linkRetangularCinza
                 : styles.linkRetangular
             }
-            disabled={selectUser == 0}
+            disabled={selectUser.length === 0}
           >
             EXCLUIR USUÁRIO
           </button>
@@ -100,9 +100,9 @@ const Home = () => {
           <div className={styles.quadradoAzul}>
             <img className={styles.logoCad} src={Logoadd} alt="ImagLogoAddem" />
           </div>
-          <Link className={styles.linkRetangular} to="/register">
+          <button className={styles.linkRetangular} onClick={() => window.location.href = "/register"}>
             CADASTRAR NOVO USUÁRIO
-          </Link>
+          </button>
         </div>
       </div>
       {windowWidth > 480 ? (

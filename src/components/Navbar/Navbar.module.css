@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.containerNav a {
+.containerNav button {
   height: 20%;
   display: flex;
   text-decoration: none;
@@ -43,10 +43,18 @@
   color: #074a82 !important;
   font-size: 20px;
   transition: 0.6s !important;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .Links {
   transition: 0.6s !important;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .btnLogout {

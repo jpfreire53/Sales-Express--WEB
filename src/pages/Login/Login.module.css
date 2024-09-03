@@ -92,19 +92,13 @@ body {
 }
 
 .forget {
-  font-weight: 600;
-  top: 578px;
-  left: 909px;
-  width: 102px;
-  height: 15px;
-  text-decoration: none;
-  text-transform: none;
-  text-align: center;
   font-size: 12px;
   font-weight: bold;
-  letter-spacing: 0px;
   color: #074a82;
-  opacity: 1;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: none;
 }
 
 .forget:hover {

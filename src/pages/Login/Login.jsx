@@ -1,19 +1,34 @@
 import styles from "./Login.module.css";
 import logo from "../../assets/icons/sales_express.png";
-import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthentication from "../../hooks/useAuthentication";
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { useState } from "react";
 import Loading from "../../components/Loading/Loading";
+import ForgotPassword from "../../components/ForgotPassword/ForgotPassword";
 
 const Login = () => {
   const { user, password, setUser, setPassword, handleSubmit, loading } = useAuthentication();
   const [showPassword, setShowPassword] = useState(false)
+  const [newPassword, setNewPassword] = useState("");
+  const [openModal, setOpenModal] = useState(false)
  
   if (loading) {
     return <Loading />;
+  }
+
+  if (openModal) {
+    return <ForgotPassword
+        open={openModal}
+        onClose={() => {
+          setOpenModal(true);
+        }}
+        setOpenModal={setOpenModal}
+        newPassword={newPassword}
+        setNewPassword={setNewPassword}
+        userId={1}
+      /> 
   }
 
   return (
@@ -50,7 +65,7 @@ const Login = () => {
           LOGIN
         </button>
         <h3>
-          <Link className={styles.forget}>Esqueci a senha</Link>
+          <button className={styles.forget} onClick={() => setOpenModal(true)}>Esqueci a senha</button>
         </h3>
       </div>
     </div>

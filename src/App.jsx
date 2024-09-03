@@ -7,8 +7,7 @@ import Sales from "./pages/Sales/Sales";
 import Cookies from "js-cookie";
 
 function App() {
-  const session = document.cookie;
-  console.log(session)
+  const session = Cookies.get("idUser");
 
   const isAuthenticated = session && session.trim() !== "";
 

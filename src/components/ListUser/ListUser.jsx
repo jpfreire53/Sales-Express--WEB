@@ -1,7 +1,7 @@
 import styles from "./ListUser.module.css";
 import editUser from "../../assets/icons/edit_black_24dp.svg";
 import { Link } from "react-router-dom";
-import EditUser from "../../pages/EditUser/EditUser.js";
+import EditUser from "../../pages/EditUser/EditUser.jsx";
 import { useEffect, useState } from "react";
 
 export default function ListUser({ user, setSelectUser, selectUser }) {
@@ -36,44 +36,40 @@ export default function ListUser({ user, setSelectUser, selectUser }) {
         />
       </td>
       <td className={styles.user}>
-        <Link
+        <button
           className={styles.user}
-          to={`/edituser/${user.id}`}
-          element={<EditUser />}
+          onClick={() => window.location.href = `/edituser/${user.id}`}
         >
           {user.user}
-        </Link>
+        </button>
       </td>
       <td className={styles.name}>
-        <Link
+        <button
           className={styles.link}
-          to={`/edituser/${user.id}`}
-          element={<EditUser />}
+          onClick={() => window.location.href = `/edituser/${user.id}`}
         >
           {user.name}
-        </Link>
+        </button>
       </td>
       <td className={styles.empresa}>
-        <Link
+        <button
           className={styles.link}
-          to={`/edituser/${user.id}`}
-          element={<EditUser />}
+          onClick={() => window.location.href = `/edituser/${user.id}`}
         >
           {user.company}
-        </Link>
+        </button>
       </td>
       <td className={styles.cnpj}>
-        <Link
+        <button
           className={styles.link}
-          to={`/edituser/${user.id}`}
-          element={<EditUser />}
+          onClick={() => window.location.href = `/edituser/${user.id}`}
         >
           {user.cnpj}
-        </Link>
+        </button>
       </td>
-      <Link to={`/edituser/${user.id}`} element={<EditUser />}>
+      <button className={styles.pencilEdit} onClick={() => window.location.href = `/edituser/${user.id}`} >
         <img src={editUser} alt="editUser" />
-      </Link>
+      </button>
     </tr>
   );
 }

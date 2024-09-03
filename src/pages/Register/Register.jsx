@@ -85,7 +85,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label>Função</label>
+            <label>Nível de acesso</label>
             <InputMask
               type="text"
               className={styles.inputStyles}
@@ -94,7 +94,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label>CARGO</label>
+            <label>Cargo</label>
             <InputMask
               type="text"
               className={styles.inputStyles}

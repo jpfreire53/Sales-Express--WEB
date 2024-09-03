@@ -1,6 +1,6 @@
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/icons/sales_express.png";
+//import logo from "../../assets/icons/sales_express.png";
 import iconUser from "../../assets/icons/account_circle_black_24dp.svg";
 import iconSales from "../../assets/icons/receipt_black_24dp.svg";
 import iconUserBlue from "../../assets/icons/account_circle_blue_24dp.svg";
@@ -44,10 +44,10 @@ const Navbar = () => {
   return (
     <header className={styles.containerNavP}>
       <ToastContainer />
-      <MenuIcon width={40} height={40} className={styles.logoImg} />
+      <MenuIcon width={40} height={40} className={styles.logoImg} color="#778DA9" />
       <nav className={styles.containerNav}>
-        <Link
-          to="/home/user"
+        <button
+          onClick={() => window.location.href = "/home/user"}
           className={
             isActiveLink("/home/user") ? styles.activeLink : styles.Links
           }
@@ -57,10 +57,10 @@ const Navbar = () => {
             alt="iconUser"
             className={styles.Icon}
           />
-        </Link>
+        </button>
 
-        <Link
-          to="/home/vendas"
+        <button
+          onClick={() => window.location.href = "/home/vendas"}
           className={
             isActiveLink("/home/vendas") ? styles.activeLink : styles.Links
           }
@@ -70,7 +70,7 @@ const Navbar = () => {
             alt="iconSales"
             className={styles.Icon}
           />
-        </Link>
+        </button>
 
         <button className={styles.btnLogout} onClick={handleLogout}>
           <img src={iconLogout} alt="iconLogout" className={styles.Icon} />
