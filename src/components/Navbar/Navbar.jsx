@@ -29,8 +29,8 @@ const Navbar = () => {
       });
 
       if (response.status === 200) {
-        Cookies.remove("session")
-        Cookies.remove("idUser")
+        Cookies.remove("idUser");
+        Cookies.remove("userType");
         toast.success("Logout bem sucedido");
         window.location.href = "/";
       } else {

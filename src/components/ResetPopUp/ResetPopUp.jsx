@@ -1,3 +1,4 @@
+import axios from "axios";
 import styles from "./ResetPopUp.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,27 +19,26 @@ const ResetPopUp = ({
 
   const handleResetPassword = async () => {
     try {
-      const encodedPassword = btoa(newPassword);
-
-      const response = await fetch(
-        `http://localhost:3000/resetpassword/${userId}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ newPassword: encodedPassword }),
-        }
-      );
       if (newPassword === "" || newPassword === null) {
         toast.error("Para alterar a senha, você precisa digitar a nova senha!");
-      } else if (response.ok) {
-        toast.success("Senha resetada com sucesso!");
-        setOpenModal(false);
-      } else {
-        toast.error("Erro ao resetar senha. Tente novamente mais tarde.");
-      }
+      } else  {
+        const response = await axios.put(
+          `http://localhost:3000/resetpassword/${userId}`,
+          {
+           newPassword: newPassword,
+          }, {
+            withCredentials: true,
+            headers: {
+              "Content-Type" : "application/json"
+            }
+          }
+        );
+
+        if (response.status === 200) {          
+          toast.success("Senha resetada com sucesso!");
+          setOpenModal(false);
+        }
+      } 
     } catch (error) {
       console.error(error);
       toast.error("Erro ao resetar senha. Tente novamente mais tarde.");

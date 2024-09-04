@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const useListSales = () => {
   const [selectSales, setSelectSales] = useState([]);
@@ -10,21 +12,19 @@ const useListSales = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/home/sales", {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        let idUser = Cookies.get("idUser");
 
-        if (!response.ok) {
-          throw new Error("Erro ao listar a venda");
-        }
+        if (idUser !== "" || idUser !== undefined) {
+          const response = await axios.get(`http://localhost:3000/home/sales/${idUser}`, {
+            withCredentials: true,
+          });
 
-        const data = await response.json();
-        setSales(data.sales);
-        setLoading(false);
+          if (response.status === 200) {
+            setSales(response.data.sales);
+            setLoading(false);
+          } 
+
+      }
       } catch (error) {
         console.error("Erro ao listar a(s) venda(s): " + error.message);
         setLoading(false);

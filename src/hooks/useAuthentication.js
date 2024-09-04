@@ -32,10 +32,10 @@ const useAuthentication = () => {
         
         if (response.status === 200) {
           let token = document.cookie
-          Cookies.set("idUser", response.data.user.id)
           if (token !== "" || token !== undefined) {
-            console.log(token)
             setLoading(false)
+            Cookies.set("idUser", response.data.user.id);
+            Cookies.set("userType", response.data.user.userType);
             toast.success("Usuário Logado com sucesso!");
             window.location.href = "/home/user";
           }
