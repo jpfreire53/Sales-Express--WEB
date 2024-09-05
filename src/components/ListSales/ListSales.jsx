@@ -9,11 +9,16 @@ export default function ListSales({ sales, setSelectSales, setOpenModal }) {
     });
   };
 
+  const formatCpf = (value) => {
+    const valorLimpo = value.replace(/\D/g, "");
+		return valorLimpo.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"); // Formata o CPF
+  };
+
   return (
     <tr key={sales.sale.id} className={styles.containerUserInfo}>
       <td className={styles.id}>{sales.sale.id}</td>
       <td className={styles.name}>{sales.sale.name}</td>
-      <td className={styles.cpf}>{sales.sale.cpf}</td>
+      <td className={styles.cpf}>{formatCpf(sales.sale.cpf)}</td>
       <td className={styles.email}>{sales.sale.email}</td>
       <td className={styles.qtdItens}>
         {sales.items.length >= 10

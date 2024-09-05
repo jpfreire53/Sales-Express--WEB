@@ -5,11 +5,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import DeletePopUp from "../../components/DeletePopUp/DeletePopUp";
 import styles from "./Home.module.css";
 import React from "react";
-import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useListUser from "../../hooks/useListUser";
 import Loading from "../../components/Loading/Loading";
+import Cookies from "js-cookie";
 
 const Home = () => {
   const {
@@ -22,12 +22,12 @@ const Home = () => {
     loading,
   } = useListUser();
 
-  if (loading) {
-    return <Loading />;
-  }
+  const userType = Cookies.get("userType");
+  console.log(Cookies.get("token"))
 
   return (
     <div className={styles.container}>
+      {loading && <Loading />}
       {windowWidth <= 480 ? (
         <DeletePopUp
           open={openModal}
@@ -65,46 +65,48 @@ const Home = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.containerBtn}>
-        <div className={styles.containerRemove}>
-          <div
-            className={
-              selectUser.length === 0 ? styles.quadradoCinza : styles.quadradoAzul
-            }
-          >
-            <img
-              className={styles.logoRemove}
-              src={logoRemove}
-              alt="ImagLogoRemove"
-            />
-          </div>
-          <button
-            onClick={() => {
-              if (selectUser.length > 0) {
-                setOpenModal(true);
-              } else {
-                setOpenModal(false);
-              }
-            }}
-            className={
-              selectUser.length === 0
-                ? styles.linkRetangularCinza
-                : styles.linkRetangular
-            }
-            disabled={selectUser.length === 0}
-          >
-            EXCLUIR USUÁRIO
-          </button>
+      {userType === "Admin" && (
+          <div className={styles.containerBtn}>
+            <div className={styles.containerRemove}>
+              <div
+                className={
+                  selectUser.length === 0 ? styles.quadradoCinza : styles.quadradoAzul
+                }
+              >
+                <img
+                  className={styles.logoRemove}
+                  src={logoRemove}
+                  alt="ImagLogoRemove"
+                />
+              </div>
+              <button
+                onClick={() => {
+                  if (selectUser.length > 0) {
+                    setOpenModal(true);
+                  } else {
+                    setOpenModal(false);
+                  }
+                }}
+                className={
+                  selectUser.length === 0
+                    ? styles.linkRetangularCinza
+                    : styles.linkRetangular
+                }
+                disabled={selectUser.length === 0}
+              >
+                EXCLUIR USUÁRIO
+              </button>
+            </div>
+            <div className={styles.containerAdd}>
+              <div className={styles.quadradoAzul}>
+                <img className={styles.logoCad} src={Logoadd} alt="ImagLogoAddem" />
+              </div>
+              <button className={styles.linkRetangular} onClick={() => window.location.href = "/register"}>
+                CADASTRAR NOVO USUÁRIO
+              </button>
+            </div>
         </div>
-        <div className={styles.containerAdd}>
-          <div className={styles.quadradoAzul}>
-            <img className={styles.logoCad} src={Logoadd} alt="ImagLogoAddem" />
-          </div>
-          <button className={styles.linkRetangular} onClick={() => window.location.href = "/register"}>
-            CADASTRAR NOVO USUÁRIO
-          </button>
-        </div>
-      </div>
+      )}
       {windowWidth > 480 ? (
         <DeletePopUp
           open={openModal}

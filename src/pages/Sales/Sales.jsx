@@ -17,14 +17,9 @@ const Sales = () => {
     windowWidth,
   } = useListSales();
 
-  console.log(sales);
-
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <div className={styles.container}>
+      {loading && <Loading />}
       {windowWidth <= 480 ? (
         <PaymentReceipt
           open={openModal}

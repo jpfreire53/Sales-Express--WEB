@@ -8,16 +8,24 @@ import iconSalesBlue from "../../assets/icons/receipt_blue_24dp.svg";
 import iconLogout from "../../assets/icons/logout_black_24dp.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MenuIcon } from "lucide-react"
+import { MenuIcon, User, XIcon } from "lucide-react"
 import axios from "axios";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
   const location = useLocation();
+  const [isExpanded, setIsExpanded] = useState(Cookies.get("expanded") === "true");
 
   const isActiveLink = (pathname) => {
     return location.pathname === pathname;
   };
+
+  const toggleNavBar = () => {
+    const newState = !isExpanded;
+    setIsExpanded(newState);
+    Cookies.set('expanded', newState, { expires: 7 });
+  }
 
   const handleLogout = async () => {
     try {
@@ -41,13 +49,45 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const savedState = Cookies.get('expanded') === 'true';
+    setIsExpanded(savedState);
+  }, []);
+
   return (
-    <header className={styles.containerNavP}>
+    <header className={`${styles.containerNavP} ${isExpanded ? styles.width12 : styles.width8}`}>
       <ToastContainer />
-      <MenuIcon width={40} height={40} className={styles.logoImg} color="#778DA9" />
+      
+      {!isExpanded ? 
+        <MenuIcon onClick={toggleNavBar} width={40} height={40} className={styles.logoImg} color="#778DA9" />        
+        :
+        <XIcon onClick={toggleNavBar} width={40} height={40} className={styles.logoImg} color="#778DA9" />
+      }
+
       <nav className={styles.containerNav}>
+        {isExpanded &&
+          <button
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/home/user/perfil"
+          }}
+          className={
+            isActiveLink("/home/user/perfil") ? styles.activeLink : styles.Links
+          }
+        >
+          <User
+            src={isActiveLink("/home/user") ? iconUserBlue : iconUser}
+            alt="iconUser"
+            className={styles.Icon}
+          />
+          {isExpanded && <p>Seu Perfil</p>}
+        </button>}
+
         <button
-          onClick={() => window.location.href = "/home/user"}
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/home/user"
+          }}
           className={
             isActiveLink("/home/user") ? styles.activeLink : styles.Links
           }
@@ -57,10 +97,14 @@ const Navbar = () => {
             alt="iconUser"
             className={styles.Icon}
           />
+          {isExpanded && <p>Usuários</p>}
         </button>
 
         <button
-          onClick={() => window.location.href = "/home/vendas"}
+          onClick={(e) =>{
+              e.preventDefault();
+              window.location.href = "/home/vendas"
+            }}
           className={
             isActiveLink("/home/vendas") ? styles.activeLink : styles.Links
           }
@@ -70,10 +114,12 @@ const Navbar = () => {
             alt="iconSales"
             className={styles.Icon}
           />
+          {isExpanded && <p>Vendas</p>}
         </button>
 
         <button className={styles.btnLogout} onClick={handleLogout}>
           <img src={iconLogout} alt="iconLogout" className={styles.Icon} />
+          {isExpanded && <p>Logout</p>}
         </button>
       </nav>
     </header>

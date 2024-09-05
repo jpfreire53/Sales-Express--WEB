@@ -18,7 +18,7 @@ const ForgotPassword = ({open, onClose, newPassword, setOpenModal, setNewPasswor
         toast.error("Para alterar a senha, você precisa digitar a nova senha!");
       } else {
         const response = await axios.put(
-          `http://localhost:3000/resetpassword/${userName}`, {
+          `http://localhost:3000/forgotpassword/${userName}`, {
              newPassword: newPassword,
           }, {
             withCredentials: true,
@@ -50,20 +50,23 @@ const ForgotPassword = ({open, onClose, newPassword, setOpenModal, setNewPasswor
       >
         <div className={styles.allContainer}>
           <div className={styles.content}>
-            <input
-              type="text"
-              className={styles.inputStyles}
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="Digite seu usuário"
-            />
-            <input
-              type="password"
-              className={styles.inputStyles}
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="Digite a sua nova senha"
-            />
+            <h2 className={styles.title}>Esqueceu a senha?</h2>
+            <div className={styles.containerINPT}>
+              <input
+                type="text"
+                className={styles.inputStyles}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder="Digite seu usuário"
+              />
+              <input
+                type="password"
+                className={styles.inputStyles}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Digite a sua nova senha"
+              />
+            </div>
             <p className={styles.quest}>Deseja alterar a sua senha atual?</p>
           </div>
           <div className={styles.btnContainer}>

@@ -6,7 +6,7 @@ const useListSales = () => {
   const [selectSales, setSelectSales] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [sales, setSales] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const useListSales = () => {
         let idUser = Cookies.get("idUser");
 
         if (idUser !== "" || idUser !== undefined) {
+          setLoading(true)
           const response = await axios.get(`http://localhost:3000/home/sales/${idUser}`, {
             withCredentials: true,
           });
