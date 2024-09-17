@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  scrollbar-width: thin;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+body::-moz-scrollbar {
+  display: none;
+}

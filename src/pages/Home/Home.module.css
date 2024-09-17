@@ -1,0 +1,211 @@
+.container {
+  display: flex;
+}
+
+.containerList {
+  overflow: scroll;
+  max-height: 200px !important;
+  width: 100%;
+}
+
+.infoRectangle {
+  margin: 40px;
+  width: 100vw;
+  overflow: auto;
+  scrollbar-width: none;
+  background-color: #ffffff99;
+  border-radius: 3px;
+  scrollbar-width: thin;
+}
+
+.infoRectangle::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.infoRectangle::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.infoRectangle::-moz-scrollbar {
+  display: none;
+}
+
+.userInfo {
+  font-weight: 600;
+  margin-left: 8px;
+  margin-top: 25px;
+  font-size: 15px;
+  border-spacing: 15px;
+  text-align: left;
+  color: #707070;
+}
+
+.containerAdd {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 10px;
+  justify-content: space-around;
+}
+
+.linkRetangular {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #778DA9;
+  background-color: white;
+  border: 2px solid #778DA9;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.5s;
+  outline: none;
+  cursor: pointer;
+}
+
+.linkRetangular:hover {
+  background-color: #415A77;
+  color: #ffffff;
+}
+
+.quadradoAzul {
+  margin-right: 6px;
+  width: 50px;
+  height: 50px;
+  background-color: #415A77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.logoCad {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.containerRemove {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 360px;
+  justify-content: space-around;
+}
+
+.linkRetangularCinza {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #707070;
+  background-color: #b7b7b7;
+  border: 2px solid #b7b7b7;
+  border-radius: 3px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.linkRetangularCinza:hover {
+  background-color: #707070;
+  color: #b7b7b7;
+}
+
+.quadradoCinza {
+  margin-right: 6px;
+  width: 50px;
+  height: 50px;
+  background-color: #707070;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.logoRemove {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.containerBtn {
+  display: flex;
+  position: fixed;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  right: 1px;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 768px) {
+  .containerAdd,
+  .containerRemove {
+    right: 10px;
+  }
+
+  .containerRemove {
+    right: 180px;
+  }
+
+  .containerBtn {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .infoRectangle {
+    margin: 0px;
+  }
+}
+
+/* Responsive styles for 480px and below */
+
+@media only screen and (max-width: 480px) {
+  .container {
+    display: inline;
+  }
+
+  .containerAdd,
+  .containerRemove {
+    display: flex;
+  }
+
+  .containerAdd {
+    margin-top: 10px;
+  }
+
+  .containerBtn {
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    bottom: 30px;
+    align-items: flex-end;
+  }
+
+  .containerRemove {
+    right: 120px;
+  }
+
+  .infoRectangle {
+    margin: 0px;
+    height: 100vh;
+  }
+
+  .userInfo {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .linkRetangular,
+  .linkRetangularCinza {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
