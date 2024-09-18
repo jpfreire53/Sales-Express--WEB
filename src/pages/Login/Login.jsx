@@ -12,12 +12,8 @@ const Login = () => {
   const { user, password, setUser, setPassword, handleSubmit, loading } = useAuthentication();
   const [showPassword, setShowPassword] = useState(false)
   const [newPassword, setNewPassword] = useState("");
-  const [openModal, setOpenModal] = useState(false)
- 
-  if (loading) {
-    return <Loading />;
-  }
-
+  const [openModal, setOpenModal] = useState(false);
+  
   if (openModal) {
     return <ForgotPassword
         open={openModal}
@@ -33,6 +29,7 @@ const Login = () => {
 
   return (
     <div>
+      {loading && <Loading />}
       <ToastContainer />
       <div className={styles.containerData}>
         <img className={styles.imgLogo} src={logo} alt="Group 24" />

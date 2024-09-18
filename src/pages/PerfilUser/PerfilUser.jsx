@@ -24,7 +24,7 @@ const PerfilUser = () => {
         {
           name: 'Page C',
           uv: 2000,
-          pv: 9800,
+          pv: 90800,
           amt: 2290,
         },
         {
@@ -47,7 +47,7 @@ const PerfilUser = () => {
         },
         {
           name: 'Page G',
-          uv: 3490,
+          uv: 1000,
           pv: 4300,
           amt: 2100,
         },
@@ -57,8 +57,13 @@ const PerfilUser = () => {
         <div className={styles.container}>
             <div>
                 <div className={styles.containerUserInfo}>     
-                    <User2Icon width={100} height={100} />
-                    <label>{user.user}</label>
+                    <div className={styles.iconText}>
+                      <User2Icon width={100} height={100} />
+                      <label>{user.user}</label>
+                    </div>
+                    <div className={styles.containerBTNs}>
+                      <button onClick={() => window.location.href = "/home/user"} className={styles.btnDash}>Voltar para a dashboard</button>
+                    </div>
                 </div>
                 <div className={styles.line2}></div>
                 <div className={styles.inputContainer}>
@@ -96,9 +101,6 @@ const PerfilUser = () => {
                         <Tooltip />
                         <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
                     </AreaChart>
-                </div>
-                <div className={styles.containerBTNs}>
-                    <button onClick={() => window.location.href = "/home/user"} className={styles.btnDash}>Voltar para a dashboard</button>
                 </div>
             </div>
         </div>

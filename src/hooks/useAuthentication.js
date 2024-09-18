@@ -39,10 +39,7 @@ const useAuthentication = () => {
             toast.success("Usuário Logado com sucesso!");
             window.location.href = "/home/user";
           }
-        } else {
-          setLoading(false)
-          toast.error("Erro ao fazer o login");
-        }
+        } 
       }
     } catch (error) {
       setLoading(false)
