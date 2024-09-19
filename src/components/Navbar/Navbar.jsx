@@ -8,7 +8,7 @@ import iconSalesBlue from "../../assets/icons/receipt_blue_24dp.svg";
 import iconLogout from "../../assets/icons/logout_black_24dp.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MenuIcon, User, XIcon } from "lucide-react"
+import { MenuIcon, User, XIcon, ShoppingCart } from "lucide-react"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -115,6 +115,23 @@ const Navbar = () => {
             className={styles.Icon}
           />
           {isExpanded && <p>Vendas</p>}
+        </button>
+
+        <button
+          onClick={(e) =>{
+              e.preventDefault();
+              window.location.href = "/home/produto"
+            }}
+          className={
+            isActiveLink("/home/produto") ? styles.activeLink : styles.Links
+          }
+        >
+          <ShoppingCart
+            src={isActiveLink("/home/produto") ? iconSalesBlue : iconSales}
+            alt="iconSales"
+            className={styles.Icon}
+          />
+          {isExpanded && <p>Produtos</p>}
         </button>
 
         <button className={styles.btnLogout} onClick={handleLogout}>
