@@ -105,7 +105,7 @@ const Home = () => {
                 CADASTRAR NOVO USUÁRIO
               </button>
             </div>
-        </div>
+          </div>
       )}
       {windowWidth > 480 ? (
         <DeletePopUp
