@@ -6,7 +6,7 @@ import PaymentReceipt from "../../components/PaymentReceipt/PaymentReceipt.jsx";
 import useListSales from "../../hooks/useListSales.js";
 import Loading from "../../components/Loading/Loading.jsx";
 
-const Sales = () => {
+export default function Sales() {
   const {
     selectSales,
     setSelectSales,
@@ -20,59 +20,41 @@ const Sales = () => {
   return (
     <div className={styles.container}>
       {loading && <Loading />}
-      {windowWidth <= 480 ? (
-        <PaymentReceipt
-          open={openModal}
-          onClose={() => {
-            setOpenModal(true);
-          }}
-          selectSales={selectSales}
-          setOpenModal={setOpenModal}
-        />
-      ) : (
-        ""
-      )}
       <Navbar />
       <div className={styles.infoRectangle}>
-        <table className={styles.userInfo}>
-          <thead>
-            <tr>
-              <th>ID.VENDAS</th>
-              <th>NOME</th>
-              <th>CPF</th>
-              <th className={styles.noShow}>E-MAIL</th>
-              <th className={styles.noShow}>QTD.ITENS</th>
-              <th className={styles.noShow}>VALOR</th>
-              <th className={styles.noShow}>TROCO</th>
-              <th>COMPROVANTE</th>
-            </tr>
-          </thead>
-          <tbody className={styles.containerList}>
-            {sales.map((sale, index) => (
-              <ListSales
-                key={index}
-                sales={sale}
-                setOpenModal={setOpenModal}
-                setSelectSales={setSelectSales}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.tableContainer}>
+          <table className={styles.userInfo}>
+            <thead>
+              <tr>
+                <th>ID.VENDAS</th>
+                <th>NOME</th>
+                <th>CPF</th>
+                <th className={styles.hideOnMobile}>E-MAIL</th>
+                <th className={styles.hideOnMobile}>QTD.ITENS</th>
+                <th className={styles.hideOnMobile}>VALOR</th>
+                <th className={styles.hideOnMobile}>TROCO</th>
+                <th>COMPROVANTE</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sales.map((sale, index) => (
+                <ListSales
+                  key={index}
+                  sales={sale}
+                  setOpenModal={setOpenModal}
+                  setSelectSales={setSelectSales}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      {windowWidth > 480 ? (
-        <PaymentReceipt
-          open={openModal}
-          onClose={() => {
-            setOpenModal(true);
-          }}
-          selectSales={selectSales}
-          setOpenModal={setOpenModal}
-        />
-      ) : (
-        ""
-      )}
+      <PaymentReceipt
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        selectSales={selectSales}
+        setOpenModal={setOpenModal}
+      />
     </div>
   );
-};
-
-export default Sales;
+}

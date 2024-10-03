@@ -8,7 +8,7 @@ import iconSalesBlue from "../../assets/icons/receipt_blue_24dp.svg";
 import iconLogout from "../../assets/icons/logout_black_24dp.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MenuIcon, User, XIcon, ShoppingCart } from "lucide-react"
+import { MenuIcon, User, XIcon, ShoppingCart, HomeIcon } from "lucide-react"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -82,6 +82,23 @@ const Navbar = () => {
           />
           {isExpanded && <p>Seu Perfil</p>}
         </button>}
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/dashboard"
+          }}
+          className={
+            isActiveLink("/dashboard") ? styles.activeLink : styles.Links
+          }
+        >
+          <HomeIcon
+            src={isActiveLink("/dashboard") ? iconUserBlue : iconUser}
+            alt="iconUser"
+            className={styles.Icon}
+          />
+          {isExpanded && <p>Dashboard</p>}
+        </button>
 
         <button
           onClick={(e) => {

@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import PerfilUser from "./pages/PerfilUser/PerfilUser";
 import ProductPage from "./pages/Product/ProductPage";
 import ProductCreatePage from "./pages/ProductCreatePage/ProductCreatePage";
+import Dashboard from "./pages/DashBoard/DashBoard";
 
 function App() {
   const session = Cookies.get("idUser");
@@ -24,6 +25,7 @@ function App() {
         <Route path="/home/user/perfil" element={!isAuthenticated ? <Navigate to="/" /> : <PerfilUser />} />
         <Route path="/home/produto" element={!isAuthenticated ? <Navigate to="/" /> : <ProductPage />} />
         <Route path="/home/produto/create" element={!isAuthenticated ? <Navigate to="/" /> : <ProductCreatePage />} />
+        <Route path="/dashboard" element={!isAuthenticated ? <Navigate to="/" /> : <Dashboard />} />
         <Route exact path="/" element={isAuthenticated ? <Navigate to="/home/user" /> : <Login />} />
       </Routes>
     </BrowserRouter>

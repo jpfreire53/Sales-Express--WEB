@@ -1,137 +1,139 @@
 .container {
-    display: flex;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.tableWrapper {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.productInfo {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #707070;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.productInfo th,
+.productInfo td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.productInfo th {
+  background-color: #f5f5f5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.productInfo tbody tr:hover {
+  background-color: rgba(65, 90, 119, 0.1);
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: white;
+  color: #778DA9;
+  border: 2px solid #778DA9;
+}
+
+.addButton:hover {
+  background-color: #415A77;
+  color: white;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: #415A77;
+  border-radius: 4px;
+}
+
+.buttonIcon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
   }
-  
-  .containerList {
-    overflow: scroll;
-    max-height: 200px !important;
+
+  .productInfo {
+    font-size: 14px;
+  }
+
+  .productInfo th,
+  .productInfo td {
+    padding: 10px;
+  }
+
+  .addButton {
     width: 100%;
-  }
-  .infoRectangle {
-    margin: 40px;
-    width: 100vw;
-    overflow: auto;
-    scrollbar-width: none;
-    background-color: #ffffff99;
-    border-radius: 3px;
-    scrollbar-width: thin;
-  }
-  
-  .infoRectangle::-webkit-scrollbar {
-    width: 0.5em;
-  }
-  
-  .infoRectangle::-webkit-scrollbar-thumb {
-    background-color: transparent;
-  }
-  
-  .infoRectangle::-moz-scrollbar {
-    display: none;
-  }
-  
-  .userInfo {
-    font-weight: 600;
-    margin-left: 20px;
-    margin-top: 30px;
-    font-size: 15px;
-    border-spacing: 15px;
-    text-align: left;
-    color: #707070;
-  }
-
-  .containerAdd {
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
-    bottom: 10px;
-    right: 10px;
-    justify-content: space-around;
-  }
-  
-  .linkRetangular {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #778DA9;
-    background-color: white;
-    border: 2px solid #778DA9;
-    border-radius: 3px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.5s;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .linkRetangular:hover {
-    background-color: #415A77;
-    color: #ffffff;
-  }
-  
-  .quadradoAzul {
-    margin-right: 6px;
-    width: 50px;
-    height: 50px;
-    background-color: #415A77;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    border-radius: 3px;
   }
-  
-  .logoCad {
-    max-width: 80px;
-    max-height: 80px;
-    color: white;
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 5px;
   }
 
-  .containerBtn {
-    display: flex;
-    position: fixed;
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
-    bottom: 10px;
-    right: 1px;
-    justify-content: space-around;
+  .productInfo {
+    font-size: 12px;
   }
-  
-  
-  @media only screen and (max-width: 768px) {
-    .infoRectangle {
-      margin: 20px;
-    }
-  
-    .userInfo {
-      margin-left: 10px;
-      margin-top: 20px;
-      font-size: 14px;
-    }
-    .noShow {
-      display: none;
-    }
+
+  .productInfo th,
+  .productInfo td {
+    padding: 8px;
   }
-  
-  /* Responsive styles for 480px and below */
-  @media only screen and (max-width: 480px) {
-    .container {
-      display: inline;
-    }
-    .infoRectangle {
-      margin: 0px;
-      height: 100vh;
-    }
-  
-    .userInfo {
-      margin-right: 5px;
-      margin-left: 0px;
-      margin-top: 10px;
-      font-size: 12px;
-    }
-    .noShow {
-      display: none;
-    }
+
+  .addButton {
+    font-size: 12px;
+    padding: 8px 16px;
   }
-  
+
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .buttonIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
