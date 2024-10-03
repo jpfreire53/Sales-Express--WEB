@@ -1,211 +1,149 @@
 .container {
   display: flex;
+  flex-direction: row;
+  min-height: 100vh;
 }
 
-.containerList {
-  overflow: scroll;
-  max-height: 200px !important;
-  width: 100%;
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.infoRectangle {
-  margin: 40px;
-  width: 100vw;
-  overflow: auto;
-  scrollbar-width: none;
-  background-color: #ffffff99;
-  border-radius: 3px;
-  scrollbar-width: thin;
-}
-
-.infoRectangle::-webkit-scrollbar {
-  width: 0.5em;
-}
-
-.infoRectangle::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.infoRectangle::-moz-scrollbar {
-  display: none;
+.tableWrapper {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .userInfo {
-  font-weight: 600;
-  margin-left: 8px;
-  margin-top: 25px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #707070;
   font-size: 15px;
-  border-spacing: 15px;
+  font-weight: 600;
+}
+
+.userInfo th,
+.userInfo td {
+  padding: 15px;
   text-align: left;
-  color: #707070;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.containerAdd {
-  margin-right: 15px;
+.userInfo th {
+  background-color: #f5f5f5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.userInfo tbody tr:hover {
+  background-color: rgba(65, 90, 119, 0.1);
+}
+
+.actionButtons {
   display: flex;
-  align-items: center;
-  bottom: 10px;
-  right: 10px;
-  justify-content: space-around;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 15px;
 }
 
-.linkRetangular {
-  height: 50px;
+.button {
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  text-decoration: none;
-  color: #778DA9;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.deleteButton {
   background-color: white;
+  color: #778DA9;
   border: 2px solid #778DA9;
-  border-radius: 3px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.5s;
-  outline: none;
-  cursor: pointer;
 }
 
-.linkRetangular:hover {
+.deleteButton:hover:not(.disabled) {
   background-color: #415A77;
-  color: #ffffff;
+  color: white;
 }
 
-.quadradoAzul {
-  margin-right: 6px;
-  width: 50px;
-  height: 50px;
+.addButton {
   background-color: #415A77;
+  color: white;
+  border: 2px solid #415A77;
+}
+
+.addButton:hover {
+  background-color: #344B60;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
-.logoCad {
-  max-width: 80px;
-  max-height: 80px;
+.buttonIcon {
+  width: 20px;
+  height: 20px;
 }
 
-.containerRemove {
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  bottom: 10px;
-  right: 360px;
-  justify-content: space-around;
-}
-
-.linkRetangularCinza {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #707070;
-  background-color: #b7b7b7;
-  border: 2px solid #b7b7b7;
-  border-radius: 3px;
-  text-align: center;
-  transition: 0.5s;
-}
-
-.linkRetangularCinza:hover {
-  background-color: #707070;
-  color: #b7b7b7;
-}
-
-.quadradoCinza {
-  margin-right: 6px;
-  width: 50px;
-  height: 50px;
-  background-color: #707070;
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-}
-
-.logoRemove {
-  max-width: 80px;
-  max-height: 80px;
-}
-
-.containerBtn {
-  display: flex;
-  position: fixed;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  bottom: 10px;
-  right: 1px;
-  justify-content: space-around;
-}
-
-@media only screen and (max-width: 768px) {
-  .containerAdd,
-  .containerRemove {
-    right: 10px;
-  }
-
-  .containerRemove {
-    right: 180px;
-  }
-
-  .containerBtn {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
-  .infoRectangle {
-    margin: 0px;
-  }
-}
-
-/* Responsive styles for 480px and below */
-
-@media only screen and (max-width: 480px) {
-  .container {
-    display: inline;
-  }
-
-  .containerAdd,
-  .containerRemove {
-    display: flex;
-  }
-
-  .containerAdd {
-    margin-top: 10px;
-  }
-
-  .containerBtn {
-    display: inline-flex;
-    justify-content: space-between;
-    flex-direction: column;
-    bottom: 30px;
-    align-items: flex-end;
-  }
-
-  .containerRemove {
-    right: 120px;
-  }
-
-  .infoRectangle {
-    margin: 0px;
-    height: 100vh;
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
   }
 
   .userInfo {
-    margin-right: 5px;
-    margin-left: 0px;
-    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .userInfo th,
+  .userInfo td {
+    padding: 10px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 5px;
+  }
+
+  .userInfo {
     font-size: 12px;
   }
 
-  .linkRetangular,
-  .linkRetangularCinza {
-    padding: 5px 10px;
+  .userInfo th,
+  .userInfo td {
+    padding: 8px;
+  }
+
+  .button {
     font-size: 12px;
+    padding: 8px 16px;
   }
 }

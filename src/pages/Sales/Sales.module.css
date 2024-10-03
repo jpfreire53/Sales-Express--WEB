@@ -1,77 +1,78 @@
 .container {
   display: flex;
-  overflow-y: hidden;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.containerList {
-  overflow: scroll;
-  max-height: 200px !important;
-  width: 100%;
-}
 .infoRectangle {
-  margin: 40px;
-  width: 100vw;
-  overflow: auto;
-  scrollbar-width: none;
+  flex: 1;
+  margin: 20px;
   background-color: #ffffff99;
-  border-radius: 3px;
-  scrollbar-width: thin;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.infoRectangle::-webkit-scrollbar {
-  width: 0.5em;
-}
-
-.infoRectangle::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.infoRectangle::-moz-scrollbar {
-  display: none;
+.tableContainer {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
 }
 
 .userInfo {
-  font-weight: 600;
-  margin-left: 20px;
-  margin-top: 30px;
-  font-size: 15px;
-  border-spacing: 15px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #333;
+}
+
+.userInfo th,
+.userInfo td {
+  padding: 12px;
   text-align: left;
-  color: #707070;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.userInfo th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.userInfo tbody tr:hover {
+  background-color: #f0f0f0;
 }
 
 @media only screen and (max-width: 768px) {
   .infoRectangle {
-    margin: 20px;
+    margin: 10px;
   }
 
   .userInfo {
-    margin-left: 10px;
-    margin-top: 20px;
-    font-size: 14px;
+    font-size: 13px;
   }
-  .noShow {
+
+  .hideOnMobile {
     display: none;
   }
 }
 
-/* Responsive styles for 480px and below */
 @media only screen and (max-width: 480px) {
-  .container {
-    display: inline;
-  }
   .infoRectangle {
-    margin: 0px;
-    height: 100vh;
+    margin: 0;
+    border-radius: 0;
   }
 
   .userInfo {
-    margin-right: 5px;
-    margin-left: 0px;
-    margin-top: 10px;
     font-size: 12px;
   }
-  .noShow {
-    display: none;
+
+  .userInfo th,
+  .userInfo td {
+    padding: 8px;
   }
 }

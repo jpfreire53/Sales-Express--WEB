@@ -1,6 +1,6 @@
 import styles from "./Perfil.module.css"
 import { User2Icon } from "lucide-react"
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import useListPerfil from "../../hooks/useListPerfil";
 
 
@@ -62,7 +62,7 @@ const PerfilUser = () => {
                       <label>{user.user}</label>
                     </div>
                     <div className={styles.containerBTNs}>
-                      <button onClick={() => window.location.href = "/home/user"} className={styles.btnDash}>Voltar para a dashboard</button>
+                      <button onClick={() => window.location.href = "/dashboard"} className={styles.btnDash}>Voltar para a dashboard</button>
                     </div>
                 </div>
                 <div className={styles.line2}></div>
