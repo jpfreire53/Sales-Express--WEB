@@ -21,6 +21,7 @@ const useListSales = () => {
           });
 
           if (response.status === 200) {
+            console.log(response.data)
             setSales(response.data.sales);
             setLoading(false);
           } 

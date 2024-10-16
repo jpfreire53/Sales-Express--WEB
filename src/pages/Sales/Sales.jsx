@@ -29,6 +29,7 @@ export default function Sales() {
                 <th>ID.VENDAS</th>
                 <th>NOME</th>
                 <th>CPF</th>
+                <th>DATA COMP.</th>
                 <th className={styles.hideOnMobile}>E-MAIL</th>
                 <th className={styles.hideOnMobile}>QTD.ITENS</th>
                 <th className={styles.hideOnMobile}>VALOR</th>

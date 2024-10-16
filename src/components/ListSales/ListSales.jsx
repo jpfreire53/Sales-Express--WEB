@@ -19,6 +19,7 @@ export default function ListSales({ sales, setSelectSales, setOpenModal }) {
       <td className={styles.id}>{sales.sale.id}</td>
       <td className={styles.name}>{sales.sale.name}</td>
       <td className={styles.cpf}>{formatCpf(sales.sale.cpf)}</td>
+      <td className={styles.cpf}>{sales.sale.date}</td>
       <td className={styles.email}>{sales.sale.email}</td>
       <td className={styles.qtdItens}>
         {sales.items.length >= 10
