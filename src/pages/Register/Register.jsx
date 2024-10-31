@@ -1,8 +1,7 @@
+import React from 'react';
 import styles from "./Register.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-import logoAdd from "../../assets/icons/person_add_black_24dp (1).svg";
-import logoReset from "../../assets/icons/baseline-refresh-24px.svg";
-import logoSave from "../../assets/icons/baseline-save-24px.svg";
+import { UserPlus, RefreshCw, Save } from 'lucide-react';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputMask from "react-input-mask";
@@ -39,33 +38,42 @@ const Register = () => {
       <Navbar />
       <div className={styles.infoRectangle}>
         <h1 className={styles.titleAdd}>
-          <img src={logoAdd} alt="logoAdd" className={styles.logoAdd} />
+          <UserPlus className={styles.logoAdd} />
           CADASTRAR UM NOVO USUÁRIO
         </h1>
         <div className={styles.containerInput}>
-          <div>
-            <label>USUÁRIO</label>
+          <div className={styles.inputGroup}>
+            <label htmlFor="user">USUÁRIO</label>
             <input
+              id="user"
               type="text"
               className={styles.inputStyles}
               value={user}
-              onChange={((e) => setUser(e.target.value), handleUserChange)}
+              onChange={(e) => {
+                setUser(e.target.value);
+                handleUserChange(e);
+              }}
               maxLength={30}
             />
           </div>
-          <div>
-            <label>NOME</label>
+          <div className={styles.inputGroup}>
+            <label htmlFor="name">NOME</label>
             <input
+              id="name"
               type="text"
               className={styles.inputStyles}
               value={name}
-              onChange={((e) => setName(e.target.value), handleNameChange)}
+              onChange={(e) => {
+                setName(e.target.value);
+                handleNameChange(e);
+              }}
               maxLength={35}
             />
           </div>
-          <div>
-            <label>EMPRESA</label>
+          <div className={styles.inputGroup}>
+            <label htmlFor="company">EMPRESA</label>
             <input
+              id="company"
               type="text"
               className={styles.inputStyles}
               value={company}
@@ -73,9 +81,10 @@ const Register = () => {
               maxLength={35}
             />
           </div>
-          <div>
-            <label>CNPJ</label>
+          <div className={styles.inputGroup}>
+            <label htmlFor="cnpj">CNPJ</label>
             <InputMask
+              id="cnpj"
               mask="99.999.999/9999-99"
               maskChar=""
               type="text"
@@ -84,18 +93,20 @@ const Register = () => {
               onChange={(e) => setCnpj(e.target.value)}
             />
           </div>
-          <div>
-            <label>Nível de acesso</label>
-            <InputMask
+          <div className={styles.inputGroup}>
+            <label htmlFor="userType">NÍVEL DE ACESSO</label>
+            <input
+              id="userType"
               type="text"
               className={styles.inputStyles}
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
             />
           </div>
-          <div>
-            <label>Cargo</label>
-            <InputMask
+          <div className={styles.inputGroup}>
+            <label htmlFor="role">CARGO</label>
+            <input
+              id="role"
               type="text"
               className={styles.inputStyles}
               value={role}
@@ -103,27 +114,13 @@ const Register = () => {
             />
           </div>
         </div>
-      </div>
-      <div className={styles.containerBtn}>
-        <div className={styles.containerRemove}>
-          <div className={styles.quadradoCinza}>
-            <img
-              className={styles.logoRemove}
-              src={logoReset}
-              alt="ImagLogoRemove"
-            />
-          </div>
-          <button className={styles.linkRetangularCinza}>RESETAR SENHA</button>
-        </div>
-        <div className={styles.containerAdd}>
-          <div className={styles.quadradoAzul}>
-            <img
-              className={styles.logoCad}
-              src={logoSave}
-              alt="ImagLogoAddem"
-            />
-          </div>
+        <div className={styles.containerBtn}>
+          <button className={styles.linkRetangularCinza}>
+            <RefreshCw className={styles.buttonIcon} />
+            RESETAR SENHA
+          </button>
           <button className={styles.linkRetangular} onClick={handleRegister}>
+            <Save className={styles.buttonIcon} />
             SALVAR ALTERAÇÕES
           </button>
         </div>

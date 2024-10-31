@@ -61,19 +61,19 @@ const ProductCreatePage = () => {
             />
           </div>
         </div>
-      </div>
-      <div className={styles.containerBtn}>
-        <div className={styles.containerAdd}>
-          <div className={styles.quadradoAzul}>
-            <img
-              className={styles.logoCad}
-              src={logoSave}
-              alt="ImagLogoAddem"
-            />
+        <div className={styles.containerBtn}>
+          <div className={styles.containerAdd}>
+            <div className={styles.quadradoAzul}>
+              <img
+                className={styles.logoCad}
+                src={logoSave}
+                alt="ImagLogoAddem"
+              />
+            </div>
+            <button className={styles.linkRetangular} onClick={handleInsertProduct}>
+              SALVAR PRODUTO
+            </button>
           </div>
-          <button className={styles.linkRetangular} onClick={handleInsertProduct}>
-            SALVAR PRODUTO
-          </button>
         </div>
       </div>
     </div>

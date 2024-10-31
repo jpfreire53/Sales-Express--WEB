@@ -1,291 +1,171 @@
 .container {
   display: flex;
+  min-height: 100vh;
+  background-color: #f0f4f8;
 }
 
 .infoRectangle {
   margin: 40px;
-  width: 100vw;
-  background-color: #ffffff99;
-  border-radius: 3px;
-}
-.titleAdd {
-  margin-top: 45px;
-  margin-left: 45px;
-  display: flex;
-  color: #415A77;
-  font-size: 20px;
-  align-items: center;
-}
-
-.containerInput {
-  color: #707070;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 45px;
-  margin-top: 50px;
-}
-
-label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.inputStyles {
-  width: 100%;
-  max-width: 270px;
-  height: 41px;
-  outline: none;
-  padding: 15px;
-  color: #778DA9;
-  margin-top: 11px;
-  margin-bottom: 30px;
+  width: calc(100% - 80px);
   background-color: #ffffff;
-  box-shadow: 0px 3px 6px #0000000d;
-  border-radius: 5px;
-  font-size: 15px;
-  opacity: 1;
-  border: none;
-  margin-right: 55%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
 }
 
-.containerInput div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.containerAdd {
-  margin-right: 15px;
+.titleAdd {
   display: flex;
   align-items: center;
-  bottom: 10px;
-  right: 10px;
-  justify-content: space-around;
-}
-
-.linkRetangular {
-  cursor: pointer;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #415A77;
-  background-color: white;
-  border: 2px solid #415A77;
-  border-radius: 3px;
-  text-align: center;
-  transition: 0.5s;
-}
-
-.linkRetangular:hover {
-  background-color: #415A77;
-  color: #ffffff;
-}
-
-.quadradoAzul {
-  margin-right: 6px;
-  width: 50px;
-  height: 50px;
-  background-color: #415A77;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-}
-
-.logoCad {
-  max-width: 80px;
-  max-height: 80px;
-}
-
-.containerRemove {
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  bottom: 10px;
-  right: 360px;
-  justify-content: space-around;
-}
-
-.linkRetangularCinza {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #707070;
-  background-color: #b7b7b7;
-  border: 2px solid #b7b7b7;
-  border-radius: 3px;
-  text-align: center;
-  transition: 0.5s;
-}
-
-.linkRetangularCinza:hover {
-  background-color: #707070;
-  color: #b7b7b7;
-}
-
-.quadradoCinza {
-  margin-right: 6px;
-  width: 50px;
-  height: 50px;
-  background-color: #707070;
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-}
-
-.logoRemove {
-  max-width: 80px;
-  max-height: 80px;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .logoAdd {
   margin-right: 15px;
+  color: #415A77;
+}
+
+.containerInput {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.containerInput div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #7f8c8d;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.inputStyles {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  color: #34495e;
+  background-color: #ecf0f1;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.inputStyles:focus {
+  outline: none;
+  border-color: #415A77;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
 .containerBtn {
-  display: flex;
   position: fixed;
-  margin-right: 15px;
+  bottom: 30px;
+  right: 30px;
+}
+
+.containerAdd {
   display: flex;
   align-items: center;
-  bottom: 10px;
-  right: 1px;
-  justify-content: space-around;
+}
+
+.quadradoAzul {
+  width: 50px;
+  height: 50px;
+  background-color: #415A77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.logoCad {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.linkRetangular {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: #415A77;
+  background-color: white;
+  border: 2px solid #415A77;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.linkRetangular:hover {
+  background-color: #415A77;
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {
   .infoRectangle {
     margin: 20px;
-  }
-
-  .inputStyles {
-    width: 100%;
-    max-width: none;
-    margin-right: 0;
-    font-size: 10px;
-  }
-
-  label {
-    font-size: 10px;
-  }
-
-  .containerAdd,
-  .containerRemove {
-    right: 10px;
-    font-size: 14px;
-  }
-
-  .containerAdd,
-  .containerRemove {
-    right: 10px;
-    font-size: 14px;
+    width: calc(100% - 40px);
+    padding: 20px;
   }
 
   .titleAdd {
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-
-  .containerInput {
-    margin-left: 20px;
-    margin-top: 20px;
+    font-size: 20px;
   }
 
   .inputStyles {
-    margin-right: 0;
+    font-size: 14px;
   }
 
-  .containerAdd,
-  .containerRemove {
-    right: 10px;
-  }
-
-  .containerRemove {
-    right: 200px;
-  }
   .containerBtn {
-    display: flex;
-    flex-direction: column;
+    bottom: 20px;
+    right: 20px;
   }
 }
 
-/* Responsive styles for 480px and below */
 @media only screen and (max-width: 480px) {
-  .container {
-    display: inline;
-  }
-
   .infoRectangle {
-    margin: 0px;
-    height: 100vh;
-  }
-
-  .containerAdd {
-    margin-top: 10px;
-  }
-
-  .inputStyles {
-    width: 100%;
-    max-width: none;
-    margin-right: 0;
-    font-size: 12px;
-  }
-
-  label {
-    margin-left: 15px;
-    font-size: 15px;
-  }
-
-  .titleAdd,
-  .containerInput {
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 10px;
+    width: calc(100% - 20px);
+    padding: 15px;
   }
 
   .titleAdd {
-    margin-left: 15px;
-    font-size: 15px;
+    font-size: 18px;
   }
 
-  .logoAdd {
-    max-width: 50px;
-    max-height: 50px;
-  }
-
-  .containerAdd,
-  .containerRemove {
-    right: 5px;
-    font-size: 12px;
-  }
-
-  .containerRemove {
-    right: 90px;
+  .containerInput {
+    gap: 15px;
   }
 
   .inputStyles {
-    width: 60%;
-    max-width: none;
-    margin-right: 30px;
-  }
-
-  .containerAdd,
-  .containerRemove {
-    right: 5px;
+    height: 36px;
+    font-size: 14px;
   }
 
   .containerBtn {
-    display: inline-flex;
-    justify-content: space-between;
-    flex-direction: column;
-    bottom: 30px;
-    align-items: flex-end;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .quadradoAzul {
+    width: 40px;
+    height: 40px;
+  }
+
+  .linkRetangular {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 15px;
   }
 }
