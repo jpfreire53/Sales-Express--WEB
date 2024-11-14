@@ -125,34 +125,26 @@ const EditUser = () => {
             />
           </div>
         </form>
-      </div>
-      <div className={styles.containerBtn}>
-        <div className={styles.containerRemove}>
-          <div className={styles.quadradoAzul}>
-            <img
-              className={styles.logoRemove}
-              src={logoReset}
-              alt="ImagLogoRemove"
-            />
+        <div className={styles.containerBtn}>
+          <div className={styles.containerRemove}>
+            <div className={styles.quadradoAzul}>
+              
+            </div>
+            <button
+              className={styles.linkRetangular}
+              onClick={() => setOpenModal(true)}
+            >
+              RESETAR SENHA
+            </button>
           </div>
-          <button
-            className={styles.linkRetangular}
-            onClick={() => setOpenModal(true)}
-          >
-            RESETAR SENHA
-          </button>
-        </div>
-        <div className={styles.containerAdd}>
-          <div className={styles.quadradoAzul}>
-            <img
-              className={styles.logoCad}
-              src={logoSave}
-              alt="ImagLogoAddem"
-            />
+          <div className={styles.containerAdd}>
+            <div className={styles.quadradoAzul}>
+              
+            </div>
+            <button className={styles.linkRetangular} onClick={handleSaveChanges}>
+              SALVAR ALTERAÇÕES
+            </button>
           </div>
-          <button className={styles.linkRetangular} onClick={handleSaveChanges}>
-            SALVAR ALTERAÇÕES
-          </button>
         </div>
       </div>
       {windowWidth > 480 ? (

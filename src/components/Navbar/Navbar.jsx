@@ -59,7 +59,7 @@ const Navbar = () => {
       <ToastContainer />
       
       {!isExpanded ? 
-        <MenuIcon onClick={toggleNavBar} width={40} height={40} className={styles.logoImg} color="#778DA9" />        
+        <MenuIcon onClick={toggleNavBar} width={24} height={24} className={styles.logoImg} color="#778DA9" />        
         :
         <XIcon onClick={toggleNavBar} width={40} height={40} className={styles.logoImg} color="#778DA9" />
       }

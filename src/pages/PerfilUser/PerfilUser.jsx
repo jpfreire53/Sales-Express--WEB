@@ -1,110 +1,101 @@
-import styles from "./Perfil.module.css"
-import { User2Icon } from "lucide-react"
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import styles from "./Perfil.module.css";
+import { User2Icon } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import useListPerfil from "../../hooks/useListPerfil";
-
+import useListSales from "../../hooks/useListSales";
+import { useEffect, useState } from "react";
 
 const PerfilUser = () => {
-
     const { user } = useListPerfil();
+    const { sales } = useListSales();
+    const [filteredSalesData, setFilteredSalesData] = useState([]);
 
-    const data = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 90800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 1000,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
+    useEffect(() => {
+        if (sales.length > 0) {
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const currentYear = currentDate.getFullYear();
+
+            const parseDate = (dateString) => {
+                if (!dateString || typeof dateString !== "string") {
+                    return new Date("");
+                }
+                const [day, month, year] = dateString.split("/").map(Number);
+                return new Date(year, month - 1, day);
+            };
+
+            const filteredSales = sales.filter((sale) => {
+                const saleDate = parseDate(sale.sale.date);
+                if (isNaN(saleDate)) return false;
+
+                const saleMonth = saleDate.getMonth();
+                const saleYear = saleDate.getFullYear();
+
+                const isWithinLastSixMonths =
+                    (saleYear === currentYear && saleMonth <= currentMonth && saleMonth >= currentMonth - 5) ||
+                    (saleYear === currentYear - 1 && saleMonth >= 12 - (5 - currentMonth));
+
+                return isWithinLastSixMonths;
+            });
+
+            const salesByMonth = Array.from({ length: 6 }, (_, i) => {
+                const monthIndex = (currentMonth - i + 12) % 12;
+                const monthName = new Date(0, monthIndex).toLocaleString("default", { month: "short" });
+
+                const totalSales = filteredSales
+                    .filter((sale) => parseDate(sale.sale.date).getMonth() === monthIndex)
+                    .reduce((sum, sale) => sum + sale.sale.value, 0);
+
+                return { name: monthName, vendas: totalSales / 100 };
+            }).reverse();
+
+            setFilteredSalesData(salesByMonth);
+        }
+    }, [sales]);
 
     return (
         <div className={styles.container}>
-            <div>
-                <div className={styles.containerUserInfo}>     
-                    <div className={styles.iconText}>
-                      <User2Icon width={100} height={100} />
-                      <label>{user.user}</label>
-                    </div>
-                    <div className={styles.containerBTNs}>
-                      <button onClick={() => window.location.href = "/dashboard"} className={styles.btnDash}>Voltar para a dashboard</button>
-                    </div>
+            <div className={styles.containerUserInfo}>
+                <div className={styles.iconText}>
+                    <User2Icon width={90} height={90} />
+                    <label>{user.user}</label>
                 </div>
-                <div className={styles.line2}></div>
-                <div className={styles.inputContainer}>
-                    <div>
-                        <label>Nome</label>
-                        <input className={styles.inputStyles} value={user.name} placeholder="Seu Nome" disabled />
-                    </div>
-                    <div>
-                        <label>CNPJ</label>
-                        <input className={styles.inputStyles} value={user.cnpj} placeholder="Seu CNPJ" disabled />
-                    </div>
-                    <div>
-                        <label>Empresa</label>
-                        <input className={styles.inputStyles} value={user.company} placeholder="Sua Empresa" disabled />
-                    </div>
+                <button
+                    onClick={() => (window.location.href = "/dashboard")}
+                    className={styles.btnDash}
+                >
+                    Voltar para a Dashboard
+                </button>
+            </div>
+
+            <div className={styles.inputContainer}>
+                <div>
+                    <label>Nome</label>
+                    <input className={styles.inputStyles} value={user.name} placeholder="Seu Nome" disabled />
+                </div>
+                <div>
+                    <label>CNPJ</label>
+                    <input className={styles.inputStyles} value={user.cnpj} placeholder="Seu CNPJ" disabled />
+                </div>
+                <div>
+                    <label>Empresa</label>
+                    <input className={styles.inputStyles} value={user.company} placeholder="Sua Empresa" disabled />
                 </div>
             </div>
-            <div className={styles.line}></div>
-            <div className={styles.chart}>
-                <div className={styles.containerChart}>
-                    <AreaChart
-                        width={680}
-                        height={400}
-                        data={data}
-                        margin={{
-                            top: 10,
-                            right: 30,
-                            left: 0,
-                            bottom: 0,
-                        }}
-                        >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                    </AreaChart>
-                </div>
+
+            <div className={styles.containerChart}>
+                <h2 className={styles.subTitle}>Vendas Mensais</h2>
+                <BarChart width={400} height={300} data={filteredSalesData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="vendas" fill="#8884d8" />
+                </BarChart>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default PerfilUser;
